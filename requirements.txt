@@ -1,0 +1,11 @@
+pandas>=2.2
+numpy>=1.26
+scikit-learn>=1.5
+matplotlib>=3.9
+seaborn>=0.13
+cleanlab>=2.6
+joblib>=1.4
+streamlit>=1.36
+openai>=1.35        # Featherless.ai is OpenAI-API compatible
+pypdf>=4.2
+jupyter
