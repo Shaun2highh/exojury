@@ -3,6 +3,8 @@
 Run:  python -m exojury.figures_stage2
 """
 
+import sys
+
 import joblib
 import matplotlib
 matplotlib.use("Agg")
@@ -10,34 +12,23 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from . import config, data
+from . import config, data, plotstyle
 from .calibrate import conformal_sets, reliability_table
 
-SURFACE = "#fcfcfb"
-INK = "#0b0b0b"
-INK2 = "#52514e"
-MUTED = "#898781"
-GRID = "#e1e0d9"
-BLUE = "#2a78d6"
-YELLOW = "#eda100"
-RED = "#e34948"
-
-plt.rcParams.update({
-    "figure.facecolor": SURFACE, "axes.facecolor": SURFACE,
-    "axes.edgecolor": "#c3c2b7", "axes.labelcolor": INK2,
-    "text.color": INK, "xtick.color": MUTED, "ytick.color": MUTED,
-    "axes.grid": True, "grid.color": GRID, "grid.linewidth": 0.8,
-    "axes.spines.top": False, "axes.spines.right": False,
-    "font.family": "sans-serif", "figure.dpi": 150,
-})
+DARK = plotstyle.mode_from_argv(sys.argv)
+_P = plotstyle.apply(DARK)
+SURFACE, INK, INK2, MUTED, GRID = (_P["surface"], _P["ink"], _P["ink2"],
+                                   _P["muted"], _P["grid"])
+BLUE, YELLOW, RED = _P["blue"], _P["yellow"], _P["red"]
+OUTDIR = config.FIGURES_DIR / "dark" if DARK else config.FIGURES_DIR
 
 
 def savefig(fig, name):
-    config.FIGURES_DIR.mkdir(parents=True, exist_ok=True)
+    OUTDIR.mkdir(parents=True, exist_ok=True)
     fig.tight_layout()
-    fig.savefig(config.FIGURES_DIR / name, bbox_inches="tight")
+    fig.savefig(OUTDIR / name, bbox_inches="tight")
     plt.close(fig)
-    print(f"saved {name}")
+    print(f"saved {'dark/' if DARK else ''}{name}")
 
 
 def main():

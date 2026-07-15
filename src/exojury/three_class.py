@@ -37,29 +37,40 @@ def main():
     print("Confusion matrix (rows=true, cols=pred):")
     print(cm)
 
-    # Figure
-    import matplotlib
-    matplotlib.use("Agg")
+    # Figure (light for README, --dark for the app)
+    import sys
+
     import matplotlib.pyplot as plt
+    from matplotlib.colors import LinearSegmentedColormap
+
+    from . import plotstyle
+
+    dark = plotstyle.mode_from_argv(sys.argv)
+    p = plotstyle.apply(dark)
+    # heavy cells go bright in dark mode, deep in light mode
+    cmap = LinearSegmentedColormap.from_list(
+        "conf", [p["surface"], "#86b6ef" if dark else "#0d366b"])
+    heavy_text = "#0b0b0b" if dark else "#ffffff"
 
     fig, ax = plt.subplots(figsize=(5.6, 4.6))
-    im = ax.imshow(cm, cmap="Blues")
+    ax.grid(visible=False)
+    im = ax.imshow(cm, cmap=cmap)
     ax.set_xticks(range(3), names, rotation=20, fontsize=8)
     ax.set_yticks(range(3), names, fontsize=8)
     for i in range(3):
         for j in range(3):
             ax.text(j, i, f"{cm[i,j]:,}", ha="center", va="center", fontsize=11,
-                    color="white" if cm[i, j] > cm.max() / 2 else "#0b0b0b")
+                    color=heavy_text if cm[i, j] > cm.max() / 2 else p["ink"])
     ax.set_xlabel("Predicted")
     ax.set_ylabel("True")
     ax.set_title("3-class confusion matrix — honest features, held-out test",
                  loc="left", fontsize=10)
     fig.colorbar(im, shrink=0.8)
-    config.FIGURES_DIR.mkdir(parents=True, exist_ok=True)
+    outdir = config.FIGURES_DIR / "dark" if dark else config.FIGURES_DIR
+    outdir.mkdir(parents=True, exist_ok=True)
     fig.tight_layout()
-    fig.savefig(config.FIGURES_DIR / "05_confusion_3class.png", dpi=150,
-                bbox_inches="tight")
-    print("saved reports/figures/05_confusion_3class.png")
+    fig.savefig(outdir / "05_confusion_3class.png", dpi=150, bbox_inches="tight")
+    print(f"saved {outdir / '05_confusion_3class.png'}")
 
 
 if __name__ == "__main__":

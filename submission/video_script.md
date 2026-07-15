@@ -21,7 +21,7 @@ not a teleprompter.
 > honest model still reaches 98.2% on held-out data, and we can measure
 > exactly how much the leaky columns would have inflated it."
 
-**[0:50–1:30] The trial — dashboard, 'Try a KOI' tab**
+**[0:50–1:30] The trial — dashboard, '⚖️ The Trial' tab**
 
 *Pick K00701.03 (Kepler-62e), point at the three metrics.*
 
@@ -36,7 +36,7 @@ not a teleprompter.
 > "Then the sponsor's Featherless API writes the astronomer's report — the
 > model decides, the LLM only narrates the evidence."
 
-**[1:30–2:10] The killer result — 'Label audit' tab**
+**[1:30–2:10] The killer result — '🧾 The Audit' tab**
 
 > "Here's our favourite part. We used our model to audit NASA's own labels.
 > Its number-one disagreement: Kepler-854 b, a 'confirmed planet' our model
@@ -46,7 +46,8 @@ not a teleprompter.
 > cousin' — whose confirmation is genuinely disputed in the literature.
 > One CSV, a laptop, and a pipeline built to distrust labels."
 
-**[2:10–2:30] The frontier + close ('Candidate frontier' tab)**
+**[2:10–2:30] The frontier + close ('🚀 Frontier' tab — flip on the
+🌍 habitable-zone toggle, then end on the '🌌 Sky Map' zoomed out)**
 
 > "Finally, the 1,978 candidates NASA hasn't resolved: ExoJury settles 74%
 > of them with statistical guarantees and honestly flags the rest for human
