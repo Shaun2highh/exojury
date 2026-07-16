@@ -157,8 +157,19 @@ def page():
                 st.markdown(cache_file.read_text())
             elif st.button("Write the dossier"):
                 from exojury.dossier import write_dossier
-                with st.spinner("The clerk is writing..."):
-                    st.markdown(write_dossier(row.kepoi_name))
+                try:
+                    with st.spinner("The clerk is writing..."):
+                        st.markdown(write_dossier(row.kepoi_name))
+                except Exception as e:
+                    if "401" in str(e) or "Authentication" in type(e).__name__:
+                        st.error("Featherless rejected the API key. Check the "
+                                 "FEATHERLESS_API_KEY secret (Manage app → "
+                                 "Settings → Secrets) — it must be the exact "
+                                 "key from featherless.ai → API Keys.")
+                    else:
+                        st.error(f"Dossier generation failed: "
+                                 f"{type(e).__name__}. The model may be cold — "
+                                 "try again in a few seconds.")
             else:
                 st.caption("No cached dossier for this object — click to "
                            "generate one live.")

@@ -78,7 +78,7 @@ def write_dossier(kepoi_name: str, use_cache: bool = True) -> str:
     if use_cache and cache_file.exists():
         return cache_file.read_text()
 
-    api_key = os.environ.get("FEATHERLESS_API_KEY")
+    api_key = (os.environ.get("FEATHERLESS_API_KEY") or "").strip()
     if not api_key:
         sys.exit("Set FEATHERLESS_API_KEY first (see docs_setup_guide.pdf)")
 

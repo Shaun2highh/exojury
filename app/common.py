@@ -15,8 +15,9 @@ from exojury import config, data  # noqa: E402
 # Streamlit Cloud passes secrets via st.secrets, not the environment.
 try:
     if "FEATHERLESS_API_KEY" in st.secrets:
-        os.environ.setdefault("FEATHERLESS_API_KEY",
-                              st.secrets["FEATHERLESS_API_KEY"])
+        key = str(st.secrets["FEATHERLESS_API_KEY"]).strip().strip('"').strip("'")
+        if key and key != "your-key-here":
+            os.environ["FEATHERLESS_API_KEY"] = key
 except Exception:
     pass  # no secrets file locally — .env already handled by exojury.config
 
