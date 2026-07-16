@@ -21,6 +21,24 @@ Entry for the India High School Exoplanet Data Challenge (Celesta).
   narrates
 - An interactive **Streamlit mission control** to try any of the 9,564 KOIs
 
+## The app
+
+```bash
+streamlit run app/dashboard.py
+```
+
+Six pages: a landing page, per-object trials with a live 3D system view
+(three.js vendored — works offline), the ranked candidate frontier, a 2D/3D
+sky map, the label audit, and the methods & honesty report.
+
+![Home](submission/screenshots/0_home.png)
+
+![The Trial](submission/screenshots/1_trial.png)
+
+![Sky Map](submission/screenshots/3_skymap.png)
+
+More in [submission/screenshots/](submission/screenshots/).
+
 ## 1. The problem with 99% accuracy
 
 The KOI cumulative table quietly contains the answer key. `kepler_name`
