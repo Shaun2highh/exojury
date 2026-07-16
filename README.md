@@ -31,13 +31,13 @@ Six pages: a landing page, per-object trials with a live 3D system view
 (three.js vendored — works offline), the ranked candidate frontier, a 2D/3D
 sky map, the label audit, and the methods & honesty report.
 
-![Home](submission/screenshots/0_home.png)
+![Home](docs/screenshots/0_home.png)
 
-![The Trial](submission/screenshots/1_trial.png)
+![The Trial](docs/screenshots/1_trial.png)
 
-![Sky Map](submission/screenshots/3_skymap.png)
+![Sky Map](docs/screenshots/3_skymap.png)
 
-More in [submission/screenshots/](submission/screenshots/).
+More screenshots in [docs/screenshots/](docs/screenshots/).
 
 ## 1. The problem with 99% accuracy
 
