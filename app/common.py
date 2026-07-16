@@ -1,5 +1,6 @@
 """Shared data loading, constants and helpers for all pages."""
 
+import os
 import sys
 from pathlib import Path
 
@@ -10,6 +11,14 @@ import streamlit as st
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from exojury import config, data  # noqa: E402
+
+# Streamlit Cloud passes secrets via st.secrets, not the environment.
+try:
+    if "FEATHERLESS_API_KEY" in st.secrets:
+        os.environ.setdefault("FEATHERLESS_API_KEY",
+                              st.secrets["FEATHERLESS_API_KEY"])
+except Exception:
+    pass  # no secrets file locally — .env already handled by exojury.config
 
 PANEL = "#101216"
 INK = "#ffffff"

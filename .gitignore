@@ -4,4 +4,6 @@ __pycache__/
 *.pyc
 .DS_Store
 models/*.joblib
+# the app needs this one at runtime (Streamlit Cloud deploys from git)
+!models/calibrated_conformal.joblib
 docs_setup_guide.pdf
