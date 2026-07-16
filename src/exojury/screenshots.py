@@ -26,8 +26,8 @@ def main():
         browser = pw.chromium.launch()
         page = browser.new_page(viewport={"width": 1440, "height": 1000},
                                 device_scale_factor=2)
-        page.goto("http://localhost:8501", wait_until="networkidle")
-        time.sleep(6)  # let plotly finish drawing
+        page.goto("http://localhost:8501", wait_until="domcontentloaded")
+        time.sleep(10)  # let streamlit hydrate + plotly/three.js draw
         for tab_text, fname in TABS:
             page.get_by_role("tab", name=tab_text).click()
             time.sleep(4)
